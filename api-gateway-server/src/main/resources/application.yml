@@ -1,0 +1,36 @@
+spring:  
+  cloud:
+    gateway:
+      routes:
+        - id: openapi
+          uri: http://localhost:${server.port}
+          predicates:
+             - Path=/v3/api-docs/**
+          filters:
+             - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
+        - id: PRODUCT-SERVICE
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/products/**
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: PRODUCT-SERVICE
+#                fallbackuri: forward:/productServiceFallBack
+        - id: PRODUCT-CAT-SERVICE
+          uri: lb://PRODUCT-CAT-SERVICE
+          predicates:
+            - Path=/cats/**
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: PRODUCT-SERVICE
+#                fallbackuri: forward:/productServiceFallBack
+
+                
+       
+   
+
+
+
+
