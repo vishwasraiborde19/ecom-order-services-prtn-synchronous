@@ -8,9 +8,9 @@
 		<version>2.7.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>jpc.test</groupId>
-	<artifactId>admin</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>org.admin</groupId>
+	<artifactId>api-config-server</artifactId>
+	<version>1.0.0</version>
 	<name>admin</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -42,6 +42,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>

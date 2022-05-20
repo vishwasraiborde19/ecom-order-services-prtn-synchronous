@@ -18,7 +18,6 @@
 		<spring-boot-admin.version>2.6.5</spring-boot-admin.version>
 	</properties>
 	<dependencies>
-
 <!-- SBA core stack -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -58,7 +57,7 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-<!-- observability stack Start all commons should be move to parenet maven and make a inherent dependency management -->
+<!-- observability stack Start-->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
@@ -95,7 +94,12 @@
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
 		</dependency>
 		<!-- observability stack end-->
-<!-- test stack start-->
+		<!-- config stack start-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		<!-- test stack start-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -111,7 +115,6 @@
 			<artifactId>spring-restdocs-mockmvc</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- test stack end-->
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

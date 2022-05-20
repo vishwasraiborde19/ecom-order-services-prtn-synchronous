@@ -18,8 +18,7 @@
 		<spring-boot-admin.version>2.6.5</spring-boot-admin.version>
 	</properties>
 	<dependencies>
-
-<!-- SBA core stack -->
+		<!-- SBA core stack -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -95,7 +94,12 @@
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
 		</dependency>
 		<!-- observability stack end-->
-<!-- test stack start-->
+		<!-- config stack start-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		<!-- test stack start-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -112,6 +116,7 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- test stack end-->
+		
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
