@@ -20,7 +20,7 @@ public class ProductController {
 	@Autowired  
 	private ProductService productService; 
 		
-	@GetMapping
+	@GetMapping("/")
 	public List<ProductVO> getProducts() {
 		return productService.productService();
 	}

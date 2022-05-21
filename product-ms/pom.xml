@@ -8,9 +8,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ecom.order</groupId>
-	<artifactId>product-ms</artifactId>
+	<artifactId>product-service</artifactId>
 	<version>1.0.0</version>
-	<name>product-ms</name>
+	<name>product-service</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>14</java.version>
