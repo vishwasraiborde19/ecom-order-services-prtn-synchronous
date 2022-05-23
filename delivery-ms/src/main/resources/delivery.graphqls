@@ -1,0 +1,19 @@
+schema{
+query: Query
+}
+
+type Query{
+getAllDelivery : [DeliveryDetailsVO]
+findDelivery(postCode: String) : [DeliveryDetailsVO]
+}
+
+type DeliveryDetailsVO{
+
+id: String
+deliveryDate: String
+deliveryTimeSlot: String
+deliveryAddressLine1: String
+deliveryAddressLine2: String
+postCode: String
+
+}

@@ -1,6 +1,7 @@
 package com.ecom.delivery.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
@@ -33,10 +34,31 @@ public class DeliveryService {
 
 	}
 	
-	public DeliveryDetailsVO findById(String id) {
+	public List<DeliveryDetailsVO> findByPostCode(String postCode) {
+		List< DeliveryDetails> deliveryDetails = deliveryRepo.findByPostCode(postCode);
+		
+		 System.out.println(deliveryDetails.toString());
+		
+		 List<DeliveryDetailsVO> DeliveryDetailsVOs= deliveryDetails.stream().map(this::getValue).collect(Collectors.toList());
+		 
+		 System.out.println(DeliveryDetailsVOs.toString());
+		 
+		 return DeliveryDetailsVOs;
 
-		 DeliveryDetails deliveryDetails = deliveryRepo.findById(id).get();
-		 return getValue(deliveryDetails);
+	}
+
+	
+	
+	public DeliveryDetailsVO findById(String id) {
+		
+		 Optional<DeliveryDetails> deliveryDetail = deliveryRepo.findById(id);
+		 if (deliveryDetail.isPresent()) {
+			 return getValue(deliveryDetail.get());
+		 }else {
+			 Optional.empty();
+		 }
+		return null;
+		
 
 	}
 

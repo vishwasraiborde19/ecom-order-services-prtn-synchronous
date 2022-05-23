@@ -42,6 +42,7 @@ public class DeliveryController {
 	private Resource schemaResource;
 
 	private GraphQL graphQL;
+	
 	@PostConstruct
 	public void loadSchema() throws IOException {
 		File schemaFile = schemaResource.getFile();
@@ -52,35 +53,35 @@ public class DeliveryController {
 	}
 
 	private RuntimeWiring buildWiring() {
-		DataFetcher<List<DeliveryDetailsVO>> fetcher1 = data -> {
+		
+		DataFetcher<List<DeliveryDetailsVO>> getAllFetcher = data -> {
 			return (List<DeliveryDetailsVO>) deliveryService.getAll();
 		};
-
+		
+		DataFetcher<List<DeliveryDetailsVO>> getDeliveryByIdFetcher = data -> {
+			return (List<DeliveryDetailsVO>) deliveryService.findByPostCode(data.getArgument("postCode"));
+		};
 
 		return RuntimeWiring.newRuntimeWiring().type("Query",
-				typeWriting -> typeWriting.dataFetcher("getAllDelivery", fetcher1))
+				typeWriting -> typeWriting.dataFetcher("getAllDelivery", getAllFetcher).dataFetcher("findDelivery", getDeliveryByIdFetcher))
 				.build();
 
 	}
 	
 	@PostMapping(value = "/query")
-	public ResponseEntity query(@RequestBody String query) {
+	public ResponseEntity getAllDelivery(@RequestBody String query) {
 		ExecutionResult result = graphQL.execute(query);
-		System.out.println("errors: " + result.getErrors());
+		System.out.println("result: " + result.getData());
 		return ResponseEntity.ok(result.getData());
 	}
 
-//
+
+
 	@GetMapping("/")
 	public List<DeliveryDetailsVO> getAll() {
 		return deliveryService.getAll();
 	}
-//	
-//	@GetMapping("/{id}")
-//	public DeliveryDetailsVO findById(@RequestParam String id) {
-//		return deliveryService.findById(id);
-//	}
-//
+	
 	@PostMapping("/addDelivery")
 	public DeliveryDetailsVO addDelivery(@RequestBody DeliveryDetails deliveryDetails) {
 		return deliveryService.addDelivery(deliveryDetails);
